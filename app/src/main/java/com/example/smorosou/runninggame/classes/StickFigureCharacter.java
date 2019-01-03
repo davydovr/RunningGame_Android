@@ -32,7 +32,7 @@ public class StickFigureCharacter extends GameObject
 
     public StickFigureCharacter(GameSurface gameSurface, Bitmap image, int x, int y)
     {
-        super(image, 2, 3, x, y);
+        super(image, 4, 3, x, y);
 
         this.gameSurface = gameSurface;
 
