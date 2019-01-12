@@ -2,8 +2,10 @@ package com.example.smorosou.runninggame.classes;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.view.MotionEvent;
+import android.view.View;
 
-public class StickFigureCharacter extends GameObject
+public class BrickWallObject extends GameObject
 {
     private static final int ROW_TOP_TO_BOTTOM = 0;
     private static final int ROW_RIGHT_TO_LEFT = 1;
@@ -21,16 +23,16 @@ public class StickFigureCharacter extends GameObject
     private Bitmap[] bottomToTops;
 
     // Velocity of game character (pixel/millisecond)
-    public static final float VELOCITY = 0.01f; // change images slower? was 0.1f
+    public static final float VELOCITY = 0.01f; //! was 0.1f
 
-    private int movingVectorX = 0; // shouldn't move right or left
+    private int movingVectorX = -25; //! should move left to right
     private int movingVectorY = 0;
 
     private long lastDrawNanoTime = -1;
 
     private GameSurface gameSurface;
 
-    public StickFigureCharacter(GameSurface gameSurface, Bitmap image, int x, int y)
+    public BrickWallObject(GameSurface gameSurface, Bitmap image, int x, int y)
     {
         super(image, 4, 3, x, y);
 
@@ -140,10 +142,13 @@ public class StickFigureCharacter extends GameObject
 
     public void draw(Canvas canvas)
     {
-        Bitmap bitmap = this.getCurrentMoveBitmap();
-        canvas.drawBitmap(bitmap, x, y, null);
-        // Last draw time
-        this.lastDrawNanoTime = System.nanoTime();
+        if(lastDrawNanoTime > 900000000) // draw it every few seconds
+        {
+            Bitmap bitmap = this.getCurrentMoveBitmap();
+            canvas.drawBitmap(bitmap, x, y, null);
+            // Last draw time
+            this.lastDrawNanoTime = System.nanoTime();
+        }
     }
 
     public void setMovingVector(int movingVectorX, int movingVectorY)
@@ -151,4 +156,5 @@ public class StickFigureCharacter extends GameObject
         this.movingVectorX = movingVectorX;
         this.movingVectorY = movingVectorY;
     }
+
 }

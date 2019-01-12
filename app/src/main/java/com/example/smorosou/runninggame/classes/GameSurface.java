@@ -4,16 +4,24 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import com.example.smorosou.runninggame.R;
 
+// to jump: call method to set sticky.y = a number. then call update. then set sticky.y = -number. then call update. then set sticky.y back to 0.
+// clarify: for y < whatever number we decide, y++, call update. Then while y > 0, y--, call update.
+
+// to fall: while y > a negative number, y--, then call update.
+
 public class GameSurface extends SurfaceView implements SurfaceHolder.Callback
 {
     private GameThread gameThread;
+    Canvas canvas;
 
     private StickFigureCharacter sticky;
+    private BrickWallObject bricky;
 
     public GameSurface(Context context)
     {
@@ -26,17 +34,47 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback
         this.getHolder().addCallback(this);
     }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+
+        if (event.getAction() == MotionEvent.ACTION_DOWN)
+        {
+            if(sticky.getX() != bricky.getX()) // Y is always zero
+            {
+                // jump
+            }
+
+            // create new bricky
+            this.bricky.draw(canvas);
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public void update()
     {
         this.sticky.update();
+        this.bricky.update();
+
+        // checks if crashed
+        if(sticky.getX() == bricky.getX())
+        {
+            // fall
+
+        }
     }
 
     @Override
     public void draw(Canvas canvas)
     {
+        this.canvas = canvas;
+
         super.draw(canvas);
 
         this.sticky.draw(canvas);
+        this.bricky.draw(canvas);
     }
 
     // Implements method of SurfaceHolder.Callback
@@ -80,4 +118,3 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback
         }
     }
 }
-
