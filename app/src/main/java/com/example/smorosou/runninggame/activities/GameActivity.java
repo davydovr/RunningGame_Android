@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.example.smorosou.runninggame.R;
+//import com.example.smorosou.runninggame.R;
 import com.example.smorosou.runninggame.classes.GameSurface;
 import com.example.smorosou.runninggame.classes.Utils;
 

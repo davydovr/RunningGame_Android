@@ -13,7 +13,9 @@ import android.support.v7.app.AppCompatDelegate;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.example.smorosou.runninggame.R;
+import com.example.smorosou.runninggame.activities.R;
+
+
 
 public class Utils {
 
