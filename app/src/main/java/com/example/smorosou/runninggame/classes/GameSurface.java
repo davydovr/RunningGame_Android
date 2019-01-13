@@ -10,15 +10,11 @@ import android.view.SurfaceView;
 
 import com.example.smorosou.runninggame.R;
 
-// to jump: call method to set sticky.y = a number. then call update. then set sticky.y = -number. then call update. then set sticky.y back to 0.
-// clarify: for y < whatever number we decide, y++, call update. Then while y > 0, y--, call update.
-
-// to fall: while y > a negative number, y--, then call update.
-
 public class GameSurface extends SurfaceView implements SurfaceHolder.Callback
 {
     private GameThread gameThread;
     Canvas canvas;
+    private boolean gameOn = true;
 
     private StickFigureCharacter sticky;
     private BrickWallObject bricky;
@@ -41,7 +37,18 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback
         {
             if(sticky.getX() != bricky.getX()) // Y is always zero
             {
-                // jump
+                for(int y = 0; y < = 30; y++)
+                {
+                    this.sticky.setMovingVector(0, y);
+                    this.sticky.update();
+                    this.sticky.draw(canvas); // not sure how necessary this line is...
+                }
+                for(int y = 30; y >= 0; y--)
+                {
+                    this.sticky.setMovingVector(0, y);
+                    this.sticky.update();
+                    this.sticky.draw(canvas); // not sure how necessary this line is
+                }
             }
 
             // create new bricky
@@ -62,6 +69,14 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback
         if(sticky.getX() == bricky.getX())
         {
             // fall
+            for(int y = 0; y > -30; y++)
+            {
+                this.sticky.setMovingVector(0, y);
+                this.sticky.update();
+                this.sticky.draw(canvas); // not sure how necessary this line is...
+                gameOn = false;
+
+            }
 
         }
     }
@@ -118,3 +133,4 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback
         }
     }
 }
+

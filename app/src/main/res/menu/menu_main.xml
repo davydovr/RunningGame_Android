@@ -2,9 +2,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.smorosou.runninggame.activities.MainActivity">
+
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
+        android:icon="@drawable/ic_settings_white"
         android:title="@string/action_settings"
-        app:showAsAction="never" />
+        app:showAsAction="never"
+
+        />
+
+    <item
+        android:icon="@drawable/ic_info_white"
+        android:title="@string/action_about"
+        app:showAsAction="never"
+        android:onClick="showAbout"/>
+
+
 </menu>

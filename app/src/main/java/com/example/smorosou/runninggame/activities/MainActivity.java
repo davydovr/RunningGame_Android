@@ -15,6 +15,7 @@ import android.widget.ImageView;
 
 import com.example.smorosou.runninggame.R;
 import com.example.smorosou.runninggame.classes.GameSurface;
+import com.example.smorosou.runninggame.classes.Utils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -70,5 +71,16 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * About bar
+     * @param item
+     */
+    @SuppressWarnings ("UnusedParameters")
+    public void showAbout (MenuItem item)
+    {
+        Utils.showInfoDialog (MainActivity.this, R.string.about_dialog_title,
+                R.string.about_dialog_banner);
     }
 }
