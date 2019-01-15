@@ -23,9 +23,9 @@ public class BrickWallObject extends GameObject
     private Bitmap[] bottomToTops;
 
     // Velocity of game character (pixel/millisecond)
-    public static final float VELOCITY = 0.01f; //! was 0.1f
+    public static final float VELOCITY = -0.1f; // moves left to right
 
-    private int movingVectorX = -25; //! should move left to right
+    private int movingVectorX = 25;
     private int movingVectorY = 0;
 
     private long lastDrawNanoTime = -1;
@@ -142,7 +142,7 @@ public class BrickWallObject extends GameObject
 
     public void draw(Canvas canvas)
     {
-        if(lastDrawNanoTime > 900000000) // draw it every few seconds
+        //if(lastDrawNanoTime > 900000000) // draw it every few seconds
         {
             Bitmap bitmap = this.getCurrentMoveBitmap();
             canvas.drawBitmap(bitmap, x, y, null);
@@ -151,10 +151,8 @@ public class BrickWallObject extends GameObject
         }
     }
 
-    public void setMovingVector(int movingVectorX, int movingVectorY)
-    {
+    public void setMovingVector(int movingVectorX, int movingVectorY) {
         this.movingVectorX = movingVectorX;
         this.movingVectorY = movingVectorY;
     }
-
 }

@@ -21,7 +21,7 @@ public class StickFigureCharacter extends GameObject
     private Bitmap[] bottomToTops;
 
     // Velocity of game character (pixel/millisecond)
-    public static final float VELOCITY = 0.01f; // change images slower? was 0.1f
+    public static final float VELOCITY = 0.1f;
 
     private int movingVectorX = 0; // shouldn't move right or left
     private int movingVectorY = 0;
@@ -29,12 +29,18 @@ public class StickFigureCharacter extends GameObject
     private long lastDrawNanoTime = -1;
 
     private GameSurface gameSurface;
+    private Bitmap image;
+    private int currX;
+    private int currY;
 
     public StickFigureCharacter(GameSurface gameSurface, Bitmap image, int x, int y)
     {
         super(image, 4, 3, x, y);
 
         this.gameSurface = gameSurface;
+        //this.image = image;
+        this.currX = x;
+        //this.currY = y;
 
         this.topToBottoms = new Bitmap[colCount];
         this.rightToLefts = new Bitmap[colCount];
@@ -151,4 +157,17 @@ public class StickFigureCharacter extends GameObject
         this.movingVectorX = movingVectorX;
         this.movingVectorY = movingVectorY;
     }
+
+
+    public void setY(int y)
+    {
+        this.y = y;
+        //super.x = currX;
+        this.update();
+    }
+
+//    public int getCurrX()
+//    {
+//        return currX;
+//    }
 }

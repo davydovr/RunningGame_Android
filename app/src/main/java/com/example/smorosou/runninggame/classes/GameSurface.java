@@ -20,6 +20,7 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback
 
     private StickFigureCharacter sticky;
     private BrickWallObject bricky;
+    private BrickWallObject brickyDos;
 
     public GameSurface(Context context)
     {
@@ -42,11 +43,13 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback
         if(sticky.getX() == bricky.getX())
         {
             // fall
-            for(int y = 0; y > -30; y++)
+            for(int y = 750; y < 1000; y++)
             {
-                this.sticky.setMovingVector(0, y);
-                this.sticky.update();
-                this.sticky.draw(canvas); // not sure how necessary this line is...
+//                this.sticky.setMovingVector(0, y);
+//                this.sticky.update();
+//                this.sticky.draw(canvas); // not sure how necessary this line is...
+                this.sticky.setY(y);
+                //this.sticky.update();
                 gameOn = false;
 
             }
@@ -70,23 +73,41 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback
 
         if (event.getAction() == MotionEvent.ACTION_DOWN)
         {
-            if(sticky.getX() != bricky.getX()) // Y is always same
+            //if(sticky.getX() != bricky.getX()) // Y is always same
             {
-                for(int y = 0; y <=  30; y++)
+                for(int y = 750; y >=  300; y--)
                 {
-                    this.sticky.setMovingVector(0, y);
-                    this.sticky.update();
-                    this.sticky.draw(canvas); // not sure how necessary this line is...
+                    //this.sticky.setMovingVector(0, y);
+                    this.sticky.setY(y);
+                    //this.sticky.update();
+                    //this.sticky.draw(canvas); // not sure how necessary this line is...
                 }
-                for(int y = 30; y >= 0; y--)
+                for(int y = 300; y <= 750; y++)
                 {
-                    this.sticky.setMovingVector(0, y);
-                    this.sticky.update();
-                    this.sticky.draw(canvas); // not sure how necessary this line is
+                    //this.sticky.setMovingVector(0, y);
+                    this.sticky.setY(y);
+                    //this.sticky.update();
+                    //this.sticky.draw(canvas); // not sure how necessary this line is
                 }
             }
 
-            // create new bricky
+            // sort of new game...
+            //surfaceCreated(getHolder());
+
+            // attempt at creating a second bricky...
+//            if(brickyDos == null)
+//            {
+//                Bitmap brickyBitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.brick_wall);
+//                this.brickyDos = new BrickWallObject(this, brickyBitmap, 1000, 750);
+//                this.bricky = null;
+//            }
+//            else
+//            {
+//                Bitmap brickyBitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.brick_wall);
+//                this.bricky = new BrickWallObject(this, brickyBitmap, 1000, 750);
+//                brickyDos = null;
+//            }
+
             this.bricky.draw(canvas);
 
             return true;
@@ -133,10 +154,10 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback
 //        this.bricky = new BrickWallObject(this,brickyBitmap,maxX ,halfY);
 
         Bitmap stickyBitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.stick_figure);
-        this.sticky = new StickFigureCharacter(this,stickyBitmap,0 ,600);
+        this.sticky = new StickFigureCharacter(this,stickyBitmap,0 ,750);
 
         Bitmap brickyBitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.brick_wall);
-        this.bricky = new BrickWallObject(this,brickyBitmap,1000 ,600);
+        this.bricky = new BrickWallObject(this,brickyBitmap,1000 ,750);
 
 
         this.gameThread = new GameThread(this,holder);
