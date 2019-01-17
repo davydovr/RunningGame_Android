@@ -33,6 +33,7 @@ public class StickFigureCharacter extends GameObject
     private int currX;
     private int currY;
 
+
     public StickFigureCharacter(GameSurface gameSurface, Bitmap image, int x, int y)
     {
         super(image, 4, 3, x, y);
@@ -162,12 +163,8 @@ public class StickFigureCharacter extends GameObject
     public void setY(int y)
     {
         this.y = y;
-        //super.x = currX;
         this.update();
     }
 
-//    public int getCurrX()
-//    {
-//        return currX;
-//    }
+
 }

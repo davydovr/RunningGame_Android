@@ -23,7 +23,7 @@ public class BrickWallObject extends GameObject
     private Bitmap[] bottomToTops;
 
     // Velocity of game character (pixel/millisecond)
-    public static final float VELOCITY = -0.1f; // moves left to right
+    public static final float VELOCITY = -0.2f; // moves left to right
 
     private int movingVectorX = 25;
     private int movingVectorY = 0;

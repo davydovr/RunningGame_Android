@@ -27,8 +27,8 @@ public class GameThread extends Thread
             //Canvas canvas= null;
             try
             {
-                // Get Canvas from Holder and lock it.
-                canvas = this.surfaceHolder.lockCanvas();
+               // Get Canvas from Holder and lock it.
+               canvas = this.surfaceHolder.lockCanvas();
 
                 // Synchronized
                 synchronized (canvas)

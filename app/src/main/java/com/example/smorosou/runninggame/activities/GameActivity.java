@@ -1,5 +1,6 @@
 package com.example.smorosou.runninggame.activities;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -29,6 +30,11 @@ public class GameActivity extends AppCompatActivity {
         this.setContentView(new GameSurface(this));
     }
 
+    public Context getContext() {
+        return this;
+    }
+
+
     /**
      * About bar
      * @param item
@@ -39,4 +45,5 @@ public class GameActivity extends AppCompatActivity {
         Utils.showInfoDialog (GameActivity.this, R.string.about_dialog_title,
                 R.string.about_dialog_banner);
     }
+
 }
