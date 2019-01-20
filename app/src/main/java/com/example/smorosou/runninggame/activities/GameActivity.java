@@ -32,20 +32,8 @@ public class GameActivity extends AppCompatActivity {
         this.setContentView(new GameSurface(this));
 
 
-      //  setupFAB();
+
     }
-
-//    private void setupFAB() {
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(GameActivity.this, GameActivity.class));
-//                Toast.makeText(getContext(), "New Game", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
-
 
     public Context getContext() {
         return this;

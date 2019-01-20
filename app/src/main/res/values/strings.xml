@@ -6,4 +6,5 @@
     <string name="action_about">About</string>
     <string name="about_dialog_banner">Created by \nShterna Morosou and Ruth Davydov \nThank you for using</string>
     <string name="about_dialog_title">About Running Game</string>
+    <string name="apply_white_background">Apply white background</string>
 </resources>

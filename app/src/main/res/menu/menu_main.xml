@@ -18,5 +18,12 @@
         app:showAsAction="never"
         android:onClick="showAbout"/>
 
+    <item
+        android:id="@+id/action_toggle_background_color_white"
+        android:title="@string/apply_white_background"
+        android:checkable="true"
+        app:showAsAction="never"
+        />
+
 
 </menu>

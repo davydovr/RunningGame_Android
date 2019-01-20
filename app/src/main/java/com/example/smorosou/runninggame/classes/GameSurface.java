@@ -1,34 +1,22 @@
 package com.example.smorosou.runninggame.classes;
-
-import android.app.Dialog;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-
-import android.support.design.widget.Snackbar;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.widget.Toast;
-
 import com.example.smorosou.runninggame.activities.R;
-
-import java.util.Timer;
-import java.util.TimerTask;
-
-import static com.example.smorosou.runninggame.classes.Utils.showInfoDialog;
+import static com.example.smorosou.runninggame.activities.MainActivity.getPrefBackgroundColor;
 
 public class GameSurface extends SurfaceView implements SurfaceHolder.Callback
 {
     private GameThread gameThread;
     Canvas canvas;
-    private boolean gameOn = true;
 
     private StickFigureCharacter sticky;
     private BrickWallObject bricky;
-    private BrickWallObject brickyDos;
+    private boolean white;
 
     public GameSurface(Context context)
     {
@@ -39,6 +27,8 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback
 
         // Set callback
         this.getHolder().addCallback(this);
+
+        white = getPrefBackgroundColor();
     }
 
 
@@ -86,7 +76,15 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback
     {
         this.canvas = canvas;
         super.draw(canvas);
-        canvas.drawRGB( 225, 225, 255); //white background
+
+        if (white) {
+            canvas.drawRGB( 225, 225, 255); //white background
+        }
+        else {
+            canvas.drawRGB( 0, 191, 255); //blue background
+        }
+
+
         this.sticky.draw(canvas);
         this.bricky.draw(canvas);
     }
