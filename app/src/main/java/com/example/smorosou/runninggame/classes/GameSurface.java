@@ -48,22 +48,37 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback
         this.sticky.update();
         this.bricky.update();
 
-        // checks if crashed
-       if(bricky.getX() == sticky.getX())
+        // checks if bricky ran off the screen or if he crashed with sticky
+       if(bricky.getX() == 0 || bricky.getX() == sticky.getX())
        {
-         surfaceCreated(getHolder());
-       //  Toast.makeText(getContext(), "New Game", Toast.LENGTH_SHORT).show();
+           surfaceCreated(getHolder());
+       }
 
-//FALL            for(int y = 750; y < 1000; y++)
+        //Toast.makeText(getContext(), "New Game", Toast.LENGTH_SHORT).show();
+
+        //FALL
+//       else if (bricky.getX() == sticky.getX())
+//        {
+//            sticky.setY(1150);
+//            //loop for 2 seconds
+//            for (int i = 0; i < 147483647; i++) {
+//                //another loop because it's 2012 and PCs have gotten considerably faster :)
+//            }
+//            //reset position
+//            sticky.setY(750);
+//        }
+
+
+//       for(int y = 750; y < 1000; y++)
 //            {
 ////                this.sticky.setMovingVector(0, y);
 ////                this.sticky.update();
 ////                this.sticky.draw(canvas); // not sure how necessary this line is...
 //                this.sticky.setY(y);
 //                //this.sticky.update();
-//                gameOn = false;
+//                //gameOn = false;
 //            }
-        }
+
     }
 
     @Override
@@ -78,30 +93,20 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_DOWN) {
             sticky.setY(300);
-
             //loop for 2 seconds
             for (int i = 0; i < 147483647; i++) {
                 //another loop because it's 2012 and PCs have gotten considerably faster :)
             }
+            //reset position
             sticky.setY(750);
             this.bricky.draw(canvas);
 
+            //true because onTouchEvent handled this, and doesn't want anyone else to handle this
             return true;
-      }
-        else {
-            return false;
-        }
     }
 
 
-
-    // sticky.setY(750);
-    //if(sticky.getX() != bricky.getX()) // Y is always same
-    // sticky.setY(300);
-
-    //sticky.setY(750);
 //                for(int y = 750; y >=  300; y--)
 //                {
 //                    //this.sticky.setMovingVector(0, y);
@@ -135,7 +140,7 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback
 
 
 
-    // Implements method of SurfaceHolder.Callback
+    //Implements method of SurfaceHolder.Callback
     @Override
     public void surfaceCreated(SurfaceHolder holder)
     {
@@ -146,7 +151,7 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback
 //        this.bricky = new BrickWallObject(this,brickyBitmap,maxX ,halfY);
 
         Bitmap stickyBitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.stick_figure);
-        this.sticky = new StickFigureCharacter(this,stickyBitmap,0 ,750);
+        this.sticky = new StickFigureCharacter(this,stickyBitmap,150 ,750);
 
         Bitmap brickyBitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.brick_wall);
         this.bricky = new BrickWallObject(this,brickyBitmap,1000 ,750);
